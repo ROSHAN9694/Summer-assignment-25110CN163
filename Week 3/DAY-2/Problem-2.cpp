@@ -1,4 +1,4 @@
-                    //Write a program to Find maximum frequency element.
+                       //Write a program to Find maximum frequency element(s).
 
 #include <iostream>
 using namespace std;
@@ -14,7 +14,7 @@ int main() {
     for(int i = 0; i < n; i++) {
         cin >> arr[i]; }
 
-    int maxFreq = 0, element;
+    int maxFreq = 0;
     for(int i = 0; i < n; i++) {
         int count = 0;
         for(int j = 0; j < n; j++) {
@@ -22,15 +22,27 @@ int main() {
                 count++; }}
 
         if(count > maxFreq) {
-            maxFreq = count;
-            element = arr[i]; }}
+            maxFreq = count; }}
 
-            if(maxFreq == 1) {
-                cout << "No element repeats." << endl;
-                return 0; }
-           else {
-        cout << "Element = " << element << endl;
-        cout << "Frequency = " << maxFreq; }
+    cout << "Element(s) with maximum frequency: ";
+
+    for(int i = 0; i < n; i++) {
+        int count = 0;
+        for(int j = 0; j < n; j++) {
+            if(arr[i] == arr[j]) {
+                count++; }}
+
+        bool duplicate = false;
+
+        for(int k = 0; k < i; k++) {
+            if(arr[i] == arr[k]) {
+                duplicate = true;
+                break; }}
+
+        if(count == maxFreq && !duplicate) {
+            cout << arr[i] << " "; }}
+
+    cout << "\nMaximum Frequency = " << maxFreq;
 
     return 0;
 }
